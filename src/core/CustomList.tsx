@@ -1,12 +1,21 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { ListOptions } from '../App.type';
 import CustomOption from './CustomOption';
 
 const CustomList: FC<ListOptions> = ({ options }) => {
+
+    const [current, setCurrent] = useState(options);
+
+    const deleteOption = (value: string) => {
+        // alert(`Deleting : ${value}`);
+
+        setCurrent(current.filter(o => o.value !== value));
+    }
+
     return (
         <div className='sm:container sm:mx-auto px-4'>
             <ul className='divide-y divide-gray-200 w-2/4'>
-                {options.map(o => <CustomOption name={o.name} value={o.value} />)}
+                {current.map(o => <CustomOption key={o.value} name={o.name} value={o.value} action={deleteOption} />)}
             </ul>
         </div>
     );

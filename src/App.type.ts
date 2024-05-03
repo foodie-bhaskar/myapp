@@ -4,7 +4,8 @@ export interface AppProps {
 
 export interface Option {
     name: string,
-    value: string
+    value: string,
+    action: Function
 }
 
 export interface ListOptions {

@@ -2,12 +2,18 @@ import { FC } from 'react';
 import { Option } from '../App.type';
 import { ArchiveBoxXMarkIcon } from '@heroicons/react/16/solid';
 
-const CustomOption: FC<Option> = ({ name, value }) => {
+const CustomOption: FC<Option> = ({ name, value, action }) => {
     return (
         <li key={value} className="group flex my-4 p-6 py-4 gap-2 hover:bg-slate-300 bg-slate-50 rounded-lg">
             <div className='w-10 flex h-10 justify-center group/btn'>
-                <button>
-                    <ArchiveBoxXMarkIcon className='size-4 text-gray-500 hidden group-hover:block self-center group-hover/btn:size-8 cursor-pointer'/>
+                <button className="hidden group-hover:block self-center cursor-pointer
+                 group-hover/btn:bg-white group-hover/btn:rounded-full
+                 group-hover/btn:p-1"
+                 onClick={ (e) => {
+                    // alert(`Clicked: ${value}`);
+                    action(value);
+                }}>
+                    <ArchiveBoxXMarkIcon className='size-4 text-gray-500 group-hover/btn:size-6'/>
                 </button>
             </div>
             <div className='w-full y-4 flex justify-between self-center'>
